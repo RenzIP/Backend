@@ -12,6 +12,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/joho/godotenv"
 )
 
 // @title API Praktikum 13 - be_latihan
@@ -26,6 +27,9 @@ import (
 // @in header
 // @name Authorization
 func main() {
+	_ = godotenv.Load()
+	_ = godotenv.Load("../.env")
+
 	app := fiber.New()
 	app.Use(logger.New())
 	app.Use(cors.New(cors.Config{
