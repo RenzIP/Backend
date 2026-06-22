@@ -9,6 +9,7 @@ var defaultAllowedOrigins = []string{
 	"http://localhost:5173",
 	"http://127.0.0.1:5173",
 	"https://frontend-q3mk.vercel.app",
+	"https://backend-kssq.onrender.com",
 }
 
 func GetAllowedOrigins() []string {
