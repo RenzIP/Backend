@@ -14,15 +14,10 @@ var DB *gorm.DB
 var dbInitErr error
 
 func InitDB() {
-	err := godotenv.Load()
-	if err != nil {
-		err = godotenv.Load("../.env")
-		if err != nil {
-			dbInitErr = fmt.Errorf("error loading .env file: %w", err)
-			log.Printf("Warning: %v", dbInitErr)
-			return
-		}
+	if err := godotenv.Load(); err != nil {
+		_ = godotenv.Load("../.env")
 	}
+
 	dsn := os.Getenv("SUPABASE_URL")
 	if dsn == "" {
 		dbInitErr = fmt.Errorf("SUPABASE_URL environment variable is not set")
