@@ -2,9 +2,11 @@ package main
 
 import (
 	"be_latihan/config"
+	"be_latihan/docs"
 	"be_latihan/model"
 	"be_latihan/router"
 	"log"
+	"os"
 	"strings"
 
 	_ "be_latihan/docs"
@@ -30,6 +32,12 @@ func main() {
 	_ = godotenv.Load()
 	_ = godotenv.Load("../.env")
 
+	swaggerHost := os.Getenv("SWAGGER_HOST")
+	if swaggerHost == "" {
+		swaggerHost = "127.0.0.1:3000"
+	}
+	docs.SwaggerInfo.Host = swaggerHost
+	
 	app := fiber.New()
 	app.Use(logger.New())
 	app.Use(cors.New(cors.Config{
